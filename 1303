@@ -1,0 +1,158 @@
+Я оступился 10 раз. 10 дней я ничего не делал, это позор, необходимо наверстывать. Максимально быстро.
+Ведь это моя жизнь и мне нужен успех. Работать максимум часов в день.
+В яндекс ленивые не попадут.
+Задачи на сегодня 
+1. quizfull - 3 теста
+2. javarush - 4 задачи
+3. Совершенный код - 40 страниц.
+
+
+1.
+Зачем нужна аннотация @Override когда вы переопределяете (или реализовываете) методы?
+Чтобы своевременно обнаружить изменение в сигнатуре метода у класса-предка (или интерфейса).
+
+Какой результат выполнения данного кода:
+switch(10) { 
+   case 1: 
+       System.out.println("1"); 
+       break; 
+   case 2: 
+       System.out.println("2"); 
+       break; 
+   default: 
+       break; 
+       System.out.println("default"); 
+}
+Возникнет ошибка компиляции unreachable statement
+
+Статические методы можно оверрайднуть
+
+Каким будет результат компиляции следующего кода:
+public class ThreadTest { 
+    public static void main(String[] args) throws InterruptedException { 
+        Thread thread = new Thread(new TestThread()); 
+        System.out.println("Hello, it's a main thread"); 
+        thread.start(); 
+        thread.join(); 
+        System.out.println("Good bye"); 
+    } 
+} 
+ 
+class TestThread implements Runnable { 
+ 
+    @Override 
+    public void run() { 
+        System.out.println("Hello, it's a simple thread"); 
+    } 
+ 
+    public void join() { 
+        System.out.println("Hello, it's a method join()"); 
+    } 
+} 
+вывод
+Hello, it's a main thread
+Hello, it's a simple thread
+Good bye
+
+Double x = 4; - невозможно, потому что присваивается инт
+
+Есть понятие класс член.
+
+Integer.toString() возвращает как раз new String();
+
+class A {} 
+class B extends A {} 
+ 
+public class Test {  
+    static public  void main(String args[]) { 
+        B b = new B(); 
+        A a = b; 
+        if (a.hashCode() == b.hashCode()) 
+            System.out.print("Passed"); 
+    } 
+} 
+
+ответ
+В консоль выведется строка "Passed"
+Ссылки a и b указывают на один и тот же объект, поэтому в консоль выведется строка "Passed". 
+Экземпляру класса A можно присвоить экземпляр класса B в силу полиморфизма.
+
+public class String { 
+    static String[][]String = {{"String"}};       // 1 
+ 
+    static { 
+        System.out.println(String.class);         // 2 
+    } 
+ 
+    public static void main(String[] args) {      // 3 
+        System.out.println(String.class);         // 4 
+    } 
+} 
+Ответ
+Возникнет ошибка компиляции 
+Пояснение: Возникнет ошибка в строке 1, поскольку тип java.lang.String неприводим к типу String
+
+TreeSet представляет собой сортированную коллекцию.
+Когда вы выполняете итерацию по ее элементам, значения оказываются автоматически представленными в отсортированном порядке.
+
+Конструктор должен обязательно вызывать либо другой конструктор этого же класса, либо конструктор суперкласса.
+
+В каких строках кода возникнет ошибка компиляции:
+class MyException1 extends Exception { }             // 1 
+class MyException2 extends RuntimeException { }      // 2 
+class A { 
+    void m1() { throw new MyException1(); }          // 3 
+    void m2() { throw new MyException2(); }          // 4 
+
+Исключение MyException1 является checked, поэтому нуждается в обработке методом m1().
+
+Что произойдет если откомпилировать и выполнить данный код?
+public class Main implements Runnable { 
+    public void run() { 
+        System.out.println("Hello"); 
+        Thread.currentThread().sleep(100);         
+    }         
+    public static void main(String... args) throws InterruptedException { 
+        new Thread(new Main()).start(); 
+    } 
+} 
+Код не откомпилируется.
+Исключение InterruptedException необходимо обрабатывать в методе run().
+
+СОВСЕМ НЕ ПОНЯЛ!
+Что будет выведено на экран?
+class ClassA { 
+    int x = 1; 
+ 
+    public void printX() { 
+        System.out.println(getX()); 
+    } 
+ 
+    public int getX() { 
+        return x; 
+    } 
+} 
+ 
+class ClassB extends ClassA { 
+    int x = 2; 
+ 
+    public int getX() { 
+        return x + 1; 
+    } 
+} 
+ 
+public class Test { 
+    public static void main(String[] args) { 
+        ClassA a = new ClassB(); 
+        System.out.println(a.x); 
+    } 
+} 
+
+Правильный ответ 1. Поскольку тип переменной является класс ClassA,
+то переменные этого класса перекрывают переменные класса ClassB при вызове этой переменной через ссылку с типом ClassA
+
+Какие из следующих методов выбрасывают исключение InterruptedException?
+
+wait sleep
+
+
